@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_discover"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.beatit.DiscoverActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/discover_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+    <ImageView
+        tools:ignore="ContentDescription"
+        android:src="@drawable/fishing"
+        style="@style/ErrorImage" />
+
+    <TextView
+        android:id="@+id/fishing"
+        android:text="@string/fishing_discover"
+        style="@style/ErrorText" />
+
+    <Button
+        android:id="@+id/discover_button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/bigPadding"
+        android:text="@string/discover" />
+
+</LinearLayout>

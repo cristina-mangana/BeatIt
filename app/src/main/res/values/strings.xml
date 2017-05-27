@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Beat It!</string>
+
+    <!--Labels-->
+    <string name="playlists">Playlists</string>
+    <string name="discover">Discover</string>
+    <string name="playing">Now Playing</string>
+
+    <!--Action button titles-->
+    <string name="action_search">Search</string>
+    <string name="action_share">Share</string>
+    <string name="action_favorite">Favourite</string>
+
+    <!--Hints-->
+    <string name="search_playlist_hint">Search music</string>
+
+    <!--Files categories [NO TRANSLATION]-->
+    <string name="record">record</string>
+    <string name="audio">aud</string>
+    <string name="unknown">unknown</string>
+
+    <!--Playlist names-->
+    <string name="recordings">Recordings</string>
+    <string name="voiceNotes">Voice Notes</string>
+    <string name="unknownArtist">Unknown Artist</string>
+    <string name="allSongs">All Songs</string>
+    <string name="random">Random Playlist</string>
+
+    <!--Songs sample-->
+    <string name="others"><xliff.g example="Let it be" id="song_title">%s</xliff.g> and others.</string>
+
+    <!--Number of available songs-->
+    <string name="available_songs"><xliff.g example="10" id="number_of_songs">%d</xliff.g> songs available</string>
+
+    <!--Unavailable pages-->
+    <string name="fishing_discover">We were trying to fish some fresh recommendations for you when
+        we run out of bait. While we solve it, why don\'t you do some research on your own?</string>
+    <string name="working_on_search">Sadly, search option is not available yet. The good news are
+        that we have our best workers working on it! They always say it will be ready soon&#8230;</string>
+    <string name="not_add_playlist">Sorry, you can\'t add a new playlist at this moment</string>
+    <string name="want_close">Are you sure you want to quit?</string>
+
+    <!--Query for web search-->
+    <string name="query">related songs to <xliff.g example="Let it be" id="song_title">%s</xliff.g></string>
+
+    <!--Text for sharing-->
+    <string name="shared_text">Now listening to <xliff.g example="Let it be" id="song_title">%s</xliff.g>
+         in <xliff.g example="Beat It!" id="app_name">%s</xliff.g></string>
+
+    <!--Button texts-->
+    <string name="keep_listening">Keep Listening</string>
+    <string name="ok">OK</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+
+    <!--Content Description-->
+    <string name="repeat">Repeat</string>
+    <string name="previous">Previous Song</string>
+    <string name="next">Next Song</string>
+    <string name="shuffle">Shuffle</string>
+</resources>

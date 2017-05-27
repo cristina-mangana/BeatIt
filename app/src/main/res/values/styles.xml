@@ -1,0 +1,64 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- RecyclerView text style. -->
+    <style name="RecyclerViewText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">@dimen/normalTextSize</item>
+    </style>
+
+    <!-- Song title text style. -->
+    <style name="TitleText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingLeft">@dimen/mediumPadding</item>
+        <item name="android:paddingRight">@dimen/mediumPadding</item>
+        <item name="android:paddingTop">@dimen/bigPadding</item>
+        <item name="android:textColor">@color/primaryDarkText</item>
+        <item name="android:textSize">@dimen/titleTextSize</item>
+    </style>
+
+    <!-- Artist name text style. -->
+    <style name="ArtistText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingBottom">@dimen/mediumPadding</item>
+        <item name="android:paddingLeft">@dimen/mediumPadding</item>
+        <item name="android:paddingRight">@dimen/mediumPadding</item>
+        <item name="android:textColor">@color/hintDarkText</item>
+        <item name="android:textSize">@dimen/headlineTextSize</item>
+    </style>
+
+    <!-- Error image style. -->
+    <style name="ErrorImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/bigPadding</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- Error text style. -->
+    <style name="ErrorText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/bigPadding</item>
+        <item name="android:layout_marginLeft">@dimen/mediumPadding</item>
+        <item name="android:layout_marginRight">@dimen/mediumPadding</item>
+        <item name="android:layout_marginTop">@dimen/bigPadding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/normalTextSize</item>
+    </style>
+
+</resources>

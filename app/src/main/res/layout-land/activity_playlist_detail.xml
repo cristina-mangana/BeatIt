@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:design="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_playlist_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.beatit.PlaylistDetailActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/playlist_detail_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+    <TextView
+        android:id="@+id/numberOfSongs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playlist_detail_toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/smallPadding"
+        android:textColor="@color/secondaryDarkText"
+        android:textSize="@dimen/normalTextSize" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/songs_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/numberOfSongs"
+        android:layout_marginLeft="@dimen/smallPadding"
+        android:layout_marginStart="@dimen/smallPadding" />
+
+    <!--https://stackoverflow.com/questions/32808996/android-add-two-toolbars-in-the-same-activity-->
+    <android.support.v7.widget.ActionMenuView
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dividerDimen"
+        android:layout_alignTop="@id/bottom_bar"
+        android:background="@color/hintDarkText" />
+
+</RelativeLayout>
