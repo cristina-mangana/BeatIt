@@ -61,4 +61,15 @@
         <item name="android:textSize">@dimen/normalTextSize</item>
     </style>
 
+    <!-- Style for Texts explaining activities' purpose. -->
+    <style name="PurposeText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/mediumPadding</item>
+        <item name="android:padding">@dimen/smallPadding</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/purpose_background</item>
+        <item name="android:textColor">@color/primaryLightText</item>
+    </style>
+
 </resources>

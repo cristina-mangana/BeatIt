@@ -58,4 +58,14 @@
     <string name="previous">Previous Song</string>
     <string name="next">Next Song</string>
     <string name="shuffle">Shuffle</string>
+
+    <!--Activity purposes-->
+    <string name="playlists_purpose">This activity sorts available songs in playlists. It uses
+        ContentResolver and Cursor to get songs stored in the device</string>
+    <string name="playlists_detail_purpose">This activity shows the content of a playlist</string>
+    <string name="now_playing_purpose">This activity plays the selected song through MediaPlayer class</string>
+    <string name="search_purpose">The purpose of this activity is to show results based on user\'s
+        query. It has to use a Search Interface</string>
+    <string name="discover_purpose">The purpose of this activity is to show music recommendations
+        to the user</string>
 </resources>

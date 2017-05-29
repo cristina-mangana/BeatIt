@@ -1,6 +1,9 @@
 package com.example.android.beatit;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -15,19 +18,37 @@ import android.os.Parcelable;
 
 public class Song implements Parcelable {
 
-    private Bitmap image;
+    private Context mContext;
     private String title, artist;
     private Uri uri;
 
-    public Song(Bitmap songImage, String songTitle, String songArtist, Uri songUri) {
-        image = songImage;
+    public Song(Context context, String songTitle, String songArtist, Uri songUri) {
+        mContext = context;
         title = songTitle;
         artist = songArtist;
         uri = songUri;
     }
 
     public Bitmap getSongImage() {
-        return image;
+        // Get the cover art if it's attached to the audio file
+        // Help from http://stackoverflow.com/questions/15314617/get-cover-picture-by-song
+        // and http://stackoverflow.com/questions/31178275/getting-audio-file-path-or-uri-from-mediastore
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        byte[] rawArt;
+        Bitmap art;
+        BitmapFactory.Options bfo = new BitmapFactory.Options();
+        mmr.setDataSource(mContext, uri);
+        rawArt = mmr.getEmbeddedPicture();
+
+        // if rawArt is null, no cover art is embedded or is not recognized as such. Then,
+        // a default cover is assigned.
+        if (rawArt != null) {
+            art = BitmapFactory.decodeByteArray(rawArt, 0, rawArt.length, bfo);
+        } else {
+            // Convert a drawable resource to bitmap http://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
+            art = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.samplecover_300);
+        }
+        return art;
     }
 
     public String getTitle() {
@@ -49,7 +70,6 @@ public class Song implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(image);
         dest.writeString(title);
         dest.writeString(artist);
         dest.writeValue(uri);
@@ -69,7 +89,6 @@ public class Song implements Parcelable {
 
     // De-parcel object
     public Song(Parcel in) {
-        image = (Bitmap) in.readValue(Bitmap.class.getClassLoader());
         title = in.readString();
         artist = in.readString();
         uri = (Uri) in.readValue(Uri.class.getClassLoader());

@@ -25,6 +25,7 @@ public class PlaylistDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist_detail);
         final Playlist playlist = getIntent().getExtras().getParcelable("playlist");
+        List<Song> songsList = playlist.getSongs();
 
         //Toolbar settings
         Toolbar myToolbar = (Toolbar) findViewById(R.id.playlist_detail_toolbar);
@@ -36,7 +37,6 @@ public class PlaylistDetailActivity extends AppCompatActivity {
 
         //Total number of songs header
         TextView textViewNumberOfSongs = (TextView) findViewById(R.id.numberOfSongs);
-        List<Song> songsList = playlist.getSongs();
         int numberOfSongs = songsList.size();
         String stringAvailableSongs = getString(R.string.available_songs, numberOfSongs);
         //Look for numbers
@@ -75,7 +75,7 @@ public class PlaylistDetailActivity extends AppCompatActivity {
                 openActivityNowPlaying.putExtra("position", position);
                 startActivity(openActivityNowPlaying);
             }
-        });
+        }, this);
         mRecyclerView.setAdapter(mAdapter);
 
         //Bottom toolbar settings

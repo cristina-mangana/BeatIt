@@ -11,7 +11,7 @@
     <dimen name="listImageDimen">72dp</dimen>
     <dimen name="cardCornerRadius">2dp</dimen>
     <dimen name="dividerDimen">1dp</dimen>
-    <dimen name="circularDimen">280dp</dimen>
+    <dimen name="circularDimen">250dp</dimen>
     <dimen name="circularDimen_land">200dp</dimen>
     <dimen name="circularBorder">2dp</dimen>
 

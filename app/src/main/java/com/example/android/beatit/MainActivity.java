@@ -4,8 +4,6 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
@@ -179,27 +177,8 @@ public class MainActivity extends AppCompatActivity {
                 String thisTitle = musicCursor.getString(titleColumn);
                 String thisArtist = musicCursor.getString(artistColumn);
                 String thisData = musicCursor.getString(dataColumn);
-                // Get the cover art if it's attached to the audio file
-                // Help from http://stackoverflow.com/questions/15314617/get-cover-picture-by-song
-                // and http://stackoverflow.com/questions/31178275/getting-audio-file-path-or-uri-from-mediastore
                 Uri songUri = Uri.parse("file:///" + thisData);
-                MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-                byte[] rawArt;
-                Bitmap art;
-                BitmapFactory.Options bfo = new BitmapFactory.Options();
-                mmr.setDataSource(getApplicationContext(), songUri);
-                rawArt = mmr.getEmbeddedPicture();
-
-                // if rawArt is null, no cover art is embedded or is not recognized as such. Then,
-                // a default cover is assigned.
-                if (rawArt != null) {
-                    art = BitmapFactory.decodeByteArray(rawArt, 0, rawArt.length, bfo);
-                    allMusicFiles.add(new Song(art, thisTitle, thisArtist, songUri));
-                } else {
-                    // Convert a drawable resource to bitmap http://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
-                    Bitmap sampleCover = BitmapFactory.decodeResource(getResources(), R.drawable.samplecover_300);
-                    allMusicFiles.add(new Song(sampleCover, thisTitle, thisArtist, songUri));
-                }
+                allMusicFiles.add(new Song(getApplicationContext(), thisTitle, thisArtist, songUri));
             }
             while (musicCursor.moveToNext());
         } else {
@@ -216,17 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 mmr.setDataSource(this, uriList.get(i));
                 String title = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
                 String artist = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
-                byte[] rawArt;
-                Bitmap art;
-                BitmapFactory.Options bfo = new BitmapFactory.Options();
-                rawArt = mmr.getEmbeddedPicture();
-                if (rawArt != null) {
-                    art = BitmapFactory.decodeByteArray(rawArt, 0, rawArt.length, bfo);
-                    allMusicFiles.add(new Song(art, title, artist, uriList.get(i)));
-                } else {
-                    Bitmap sampleCover = BitmapFactory.decodeResource(getResources(), R.drawable.samplecover_300);
-                    allMusicFiles.add(new Song(sampleCover, title, artist, uriList.get(i)));
-                }
+                allMusicFiles.add(new Song(getApplicationContext(), title, artist, uriList.get(i)));
             }
         }
         musicCursor.close();
@@ -278,6 +247,13 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < numberOfRandomSongs; i++) {
                 randomPlaylist.add(allSongsPlaylist.get(randomNumbersList.get(i)));
             }
+            // Sort alphabetically
+            Collections.sort(randomPlaylist, new Comparator<Song>() {
+                @Override
+                public int compare(Song a, Song b) {
+                    return a.getTitle().compareTo(b.getTitle());
+                }
+            });
         }
     }
 }

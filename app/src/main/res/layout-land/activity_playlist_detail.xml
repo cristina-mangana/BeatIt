@@ -14,12 +14,18 @@
         android:layout_height="?attr/actionBarSize" />
 
     <TextView
+        android:id="@+id/purpose_text_view"
+        android:layout_below="@id/playlist_detail_toolbar"
+        android:text="@string/discover_purpose"
+        style="@style/PurposeText" />
+
+    <TextView
         android:id="@+id/numberOfSongs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playlist_detail_toolbar"
+        android:layout_below="@id/purpose_text_view"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/smallPadding"
+        android:layout_marginBottom="@dimen/smallPadding"
         android:textColor="@color/secondaryDarkText"
         android:textSize="@dimen/normalTextSize" />
 

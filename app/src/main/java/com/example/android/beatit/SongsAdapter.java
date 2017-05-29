@@ -1,6 +1,10 @@
 package com.example.android.beatit;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.media.MediaMetadataRetriever;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +22,7 @@ import java.util.List;
  */
 
 public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder>{
+    private Context mContext;
     private List<Song> songsList;
     public static MyAdapterListener onClickListener;
 
@@ -45,9 +50,10 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder>{
         }
     }
 
-    public SongsAdapter(List<Song> songsList, MyAdapterListener listener) {
+    public SongsAdapter(List<Song> songsList, MyAdapterListener listener, Context context) {
         this.songsList = songsList;
         onClickListener = listener;
+        mContext = context;
     }
 
     @Override
@@ -63,11 +69,11 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder>{
         ImageView imageViewCover = (ImageView) itemView.findViewById(R.id.song_image);
         //Set the dimensions of the image based on the screen dimensions
         if (screenWidth < screenHeight) {
-            imageViewCover.setMinimumHeight((int) (0.8 * screenWidth));
-            imageViewCover.setMinimumWidth((int) (0.8 * screenWidth));
+            imageViewCover.setMinimumHeight((int) (0.7 * screenWidth));
+            imageViewCover.setMinimumWidth((int) (0.7 * screenWidth));
         } else {
-            imageViewCover.setMinimumHeight((int) (0.5 * screenHeight));
-            imageViewCover.setMinimumWidth((int) (0.5 * screenHeight));
+            imageViewCover.setMinimumHeight((int) (0.3 * screenHeight));
+            imageViewCover.setMinimumWidth((int) (0.3 * screenHeight));
         }
         // Set the font's path
         String fontPathRobotoRegular = "fonts/Roboto-Regular.ttf";
@@ -87,7 +93,23 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(SongsAdapter.ViewHolder holder, int position) {
         Song song = songsList.get(position);
-        holder.cover.setImageBitmap(song.getSongImage());
+        // Get the cover art if it's attached to the audio file
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        byte[] rawArt;
+        Bitmap art;
+        BitmapFactory.Options bfo = new BitmapFactory.Options();
+        mmr.setDataSource(mContext, song.getUri());
+        rawArt = mmr.getEmbeddedPicture();
+
+        // if rawArt is null, no cover art is embedded or is not recognized as such. Then,
+        // a default cover is assigned.
+        if (rawArt != null) {
+            art = BitmapFactory.decodeByteArray(rawArt, 0, rawArt.length, bfo);
+        } else {
+            // Convert a drawable resource to bitmap http://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
+            art = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.samplecover_300);
+        }
+        holder.cover.setImageBitmap(art);
         holder.title.setText(song.getTitle());
         holder.artist.setText(song.getArtist());
     }

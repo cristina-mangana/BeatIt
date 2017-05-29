@@ -13,12 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
+    <TextView
+        android:text="@string/now_playing_purpose"
+        style="@style/PurposeText" />
+
     <info.abdolahi.CircularMusicProgressBar
         android:id="@+id/circular_cover"
         android:layout_width="@dimen/circularDimen"
         android:layout_height="@dimen/circularDimen"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/bigPadding"
+        android:layout_margin="@dimen/smallPadding"
         app:border_color="@color/hintLightText"
         app:border_width="@dimen/circularBorder"
         app:centercircle_diammterer="1"
@@ -39,7 +43,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mediumPadding"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

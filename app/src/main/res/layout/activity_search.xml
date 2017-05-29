@@ -12,6 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
+    <TextView
+        android:text="@string/search_purpose"
+        style="@style/PurposeText" />
+
     <ImageView
         tools:ignore="ContentDescription"
         android:src="@drawable/cable_guys"

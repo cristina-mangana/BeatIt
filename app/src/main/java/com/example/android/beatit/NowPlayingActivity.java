@@ -2,7 +2,10 @@ package com.example.android.beatit;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -73,7 +76,23 @@ public class NowPlayingActivity extends AppCompatActivity {
 
         //Import song data
         CircularMusicProgressBar circularCover = (CircularMusicProgressBar) findViewById(R.id.circular_cover);
-        circularCover.setImageBitmap(songPlaying.getSongImage());
+        // Get the cover art if it's attached to the audio file
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        byte[] rawArt;
+        Bitmap art;
+        BitmapFactory.Options bfo = new BitmapFactory.Options();
+        mmr.setDataSource(this, songPlaying.getUri());
+        rawArt = mmr.getEmbeddedPicture();
+
+        // if rawArt is null, no cover art is embedded or is not recognized as such. Then,
+        // a default cover is assigned.
+        if (rawArt != null) {
+            art = BitmapFactory.decodeByteArray(rawArt, 0, rawArt.length, bfo);
+        } else {
+            // Convert a drawable resource to bitmap http://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
+            art = BitmapFactory.decodeResource(getResources(), R.drawable.samplecover_300);
+        }
+        circularCover.setImageBitmap(art);
         TextView textViewTitle = (TextView) findViewById(R.id.title);
         textViewTitle.setText(songPlaying.getTitle());
         TextView textViewArtist = (TextView) findViewById(R.id.artist);

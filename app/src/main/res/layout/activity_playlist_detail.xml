@@ -14,14 +14,20 @@
         android:layout_height="?attr/actionBarSize" />
 
     <TextView
+        android:id="@+id/purpose_text_view"
+        android:layout_below="@id/playlist_detail_toolbar"
+        android:text="@string/playlists_detail_purpose"
+        style="@style/PurposeText" />
+
+    <TextView
         android:id="@+id/numberOfSongs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playlist_detail_toolbar"
+        android:layout_below="@id/purpose_text_view"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/mediumPadding"
+        android:layout_margin="@dimen/smallPadding"
         android:textColor="@color/secondaryDarkText"
-        android:textSize="@dimen/headlineTextSize" />
+        android:textSize="@dimen/normalTextSize" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/songs_recycler_view"
@@ -29,8 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/numberOfSongs"
         android:layout_marginLeft="@dimen/smallPadding"
-        android:layout_marginStart="@dimen/smallPadding"
-        android:layout_marginTop="@dimen/bigPadding" />
+        android:layout_marginStart="@dimen/smallPadding" />
 
     <!--https://stackoverflow.com/questions/32808996/android-add-two-toolbars-in-the-same-activity-->
     <android.support.v7.widget.ActionMenuView
